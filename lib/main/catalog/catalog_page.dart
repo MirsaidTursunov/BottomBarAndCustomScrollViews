@@ -8,7 +8,7 @@ class CatalogPage extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
+          const SliverAppBar(
             expandedHeight: 195,
             shadowColor: Colors.transparent,
             // pinned: true,
@@ -32,30 +32,46 @@ class CatalogPage extends StatelessWidget {
               ),
             ),
           ),
-          SliverList(delegate: SliverChildListDelegate(
-            [
-              Container(
-                height: 100,
-                color: Colors.lightBlue,
+          SliverList(
+              delegate: SliverChildListDelegate([
+            Container(
+              height: 100,
+              color: Colors.lightBlue,
+            ),
+          ])),
+          SliverPadding(
+            padding: const EdgeInsets.all(16),
+            sliver: SliverGrid(
+              delegate: SliverChildBuilderDelegate(
+                childCount: 10,
+                (context, index) {
+                  return Container(
+                    color: Colors.deepOrangeAccent,
+                    child: const Text('11 element'),
+                  );
+                },
               ),
-            ]
-          )),
-          SliverList(delegate: SliverChildBuilderDelegate(
-            childCount: 11,
-              (context, index){
-                return    Container(
-
-                  color: Colors.deepOrangeAccent,
-                  child: Text('11 element'),
-                );
-              }
-          )),
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+              ),
+            ),
+          ),
+          SliverList(
+              delegate:
+                  SliverChildBuilderDelegate(childCount: 11, (context, index) {
+            return Container(
+              color: Colors.deepOrangeAccent,
+              child: const Text('11 element'),
+            );
+          })),
           SliverList.builder(
             itemCount: 5,
             itemBuilder: (context, index) {
               return Container(
                 color: Colors.red,
-                child: Text('11 element'),
+                child: const Text('11 element'),
               );
             },
           ),
